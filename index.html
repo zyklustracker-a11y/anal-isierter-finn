@@ -156,6 +156,12 @@
     line-height: 1.12;
     margin-bottom: 0.9rem;
   }
+  article h3.zwischen {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 1.6rem 0 0.7rem;
+  }
   .meta {
     display: flex;
     flex-wrap: wrap;
@@ -332,9 +338,9 @@
     margin-top: 0.6rem;
   }
 
-  /* ---------- Ähnliche Artikel ---------- */
-  .aehnlich { padding: 2.4rem 0; border-bottom: 1px solid var(--hellgrau); }
-  .aehnlich h3, .kommentare h3 {
+  /* ---------- Kommentare ---------- */
+  .kommentare { padding: 2.4rem 0; }
+  .kommentare h3 {
     font-family: var(--serif);
     font-weight: 900;
     font-size: 1.5rem;
@@ -342,34 +348,6 @@
     border-bottom: 3px solid var(--schwarz);
     margin-bottom: 1.2rem;
   }
-  .aehnlich ul { list-style: none; }
-  .aehnlich li {
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--hellgrau);
-  }
-  .aehnlich li:last-child { border-bottom: none; }
-  .aehnlich a {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--schwarz);
-    text-decoration: none;
-    line-height: 1.3;
-  }
-  .aehnlich a:hover { color: var(--rot); }
-  .aehnlich .ressort-tag {
-    display: block;
-    font-family: var(--sans);
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--rot);
-    margin-bottom: 0.15rem;
-  }
-
-  /* ---------- Kommentare ---------- */
-  .kommentare { padding: 2.4rem 0; }
   .kommentar {
     padding: 1.1rem 0;
     border-bottom: 1px solid var(--hellgrau);
@@ -529,7 +507,7 @@
 <!-- Breaking-News-Banner -->
 <div class="breaking" role="status">
   <span class="label">+++ Eilmeldung +++</span>
-  <span class="ticker">Ziege weiter flüchtig ++ Polizei: „Kein Blickkontakt" ++ Garage hat sich erholt ++ Mülltonnen bitte reinholen ++ Die Lippe schweigt weiter ++</span>
+  <span class="ticker">Ziege weiter flüchtig ++ Polizei: „Kein Blickkontakt, kein Augenzwinkern" ++ Unterhose weiterhin vermisst ++ Er sagt: „Wir sind nur Freunde" ++ Die Ziege schweigt vielsagend ++</span>
 </div>
 
 <header>
@@ -541,57 +519,79 @@
     <ul>
       <li><a href="#" class="aktiv">Startseite</a></li>
       <li><a href="#ziegen-affaere">Ziegen</a></li>
-      <li><a href="#panorama">Panorama</a></li>
-      <li><a href="#eskalation">Eskalation</a></li>
-      <li><a href="#">Rückbank</a></li>
       <li><a href="#kommentare">Leserbriefe</a></li>
+      <li><a href="#">Rückbank</a></li>
+      <li><a href="#">Sonst nichts</a></li>
     </ul>
   </nav>
 </header>
 
 <div class="datum-leiste">
   <span>Donnerstag, 7. August 2026</span>
-  <span>Ausgabe Nr. 1 · Preis: unbezahlbar</span>
+  <span>Ausgabe Nr. 1 · Einziges Thema: die Ziege</span>
 </div>
 
 <main>
 
-  <!-- TOP-STORY: Die Ziegen-Affäre -->
+  <!-- DIE ZIEGEN-AFFÄRE -->
   <article id="ziegen-affaere" class="einblenden">
     <p class="kicker">Exklusiv · Die Ziegen-Affäre</p>
-    <h2>2 Uhr nachts: Ziege jagt Mann durchs Industriegebiet</h2>
+    <h2>2 Uhr nachts: Willige Ziege jagt jungen Mann – Unterhose bis heute verschwunden</h2>
     <figure>
       <img src="images/ziege.jpeg" alt="Fahndungsfoto der gesuchten Ziege: Tier mit Hörnern und schiefen Zähnen blickt direkt in die Kamera" loading="lazy">
-      <figcaption>Das Fahndungsfoto. Zeugen erkannten sie sofort an den Zähnen. Einige behaupten, das sei ein Schaf. Die Redaktion bleibt bei Ziege. <span class="credit">Foto: Polizei / Archiv</span></figcaption>
+      <figcaption>Das Fahndungsfoto. Dieser Blick, sagen Zeugen, galt an jenem Abend nur einem einzigen Mann. <span class="credit">Foto: Polizei / Archiv</span></figcaption>
     </figure>
     <div class="meta">
       <span class="autor">Von H.-J. Bock, Huftier-Ressort</span>
-      <span>Lesezeit: 1 Minute</span>
+      <span>Lesezeit: 2 Minuten</span>
+      <span>1.204 Kommentare</span>
     </div>
 
-    <p>Er wollte nur kurz raus. Sie wollte offenbar mehr. Gegen 2 Uhr verlässt ein junger Mann die Garagenparty, um zu pinkeln. Unter einer Laterne wartet: die Ziege. Erst schaut sie nur. Dann trabt sie los. Direkt auf ihn zu.</p>
+    <p>Er wollte nur kurz raus zum Pinkeln. Sie wollte deutlich mehr. Gegen 2 Uhr nachts verlässt ein junger Mann die Garagenparty – und trifft unter einer Laterne auf die Ziege. Zeugen beschreiben ihren Blick als „eindeutig". Sie scharrt einmal mit dem Huf. Dann trabt sie los. Direkt auf ihn zu.</p>
 
-    <p>Was folgt, ist die schnellste Runde, die je ein Mensch mit offener Hose um eine Lagerhalle gelaufen ist. Einmal ums Gebäude, durch eine Hecke (war ein Zaun), vorbei an der Waschanlage. An der Bushaltestelle gibt die Ziege auf. Sie schaut noch einmal zurück. Dann ist sie weg.</p>
+    <p>Was folgt, ist die schnellste Runde, die je ein Mensch mit offener Hose um eine Lagerhalle gelaufen ist. Doch die Ziege ist schneller. Am Zaun holt sie auf – und erwischt mit den Zähnen den Bund seiner Unterhose. Es kommt zum Gerangel. Die Hose reißt. Die Unterhose verschwindet mit der Ziege in der Nacht. Sie wurde bis heute nicht gefunden.</p>
+
+    <h3 class="zwischen">„Er hat sich nicht besonders gewehrt"</h3>
+
+    <p>Und hier beginnt der eigentliche Skandal. Denn Augenzeugen wollen beobachtet haben, dass der junge Mann beim Gerangel am Zaun – nun ja – auffällig wenig Gegenwehr zeigte. „Er hätte längst weg sein können", sagt einer, der von der Garage aus alles sah. „Er ist aber geblieben. Die beiden haben sich angeschaut. Da war was."</p>
 
     <blockquote>
-      <p>„Die Ziege gilt weiterhin als flüchtig. Wir raten: kein Blickkontakt. Und Hose zu."</p>
-      <cite>Polizeisprecher, todernst</cite>
+      <p>„Ich habe viel gesehen in dreißig Jahren Nachtdienst. Aber noch nie zwei, die sich nach so einer Verfolgungsjagd so lange in die Augen geschaut haben."</p>
+      <cite>Nachtwächter, seitdem in Therapie</cite>
+    </blockquote>
+
+    <p>Der junge Mann bestreitet alles – allerdings mit einem Grinsen, das Ermittler als „nicht hilfreich" einstufen. Auf die Frage, was zwischen ihm und der Ziege gelaufen sei, sagte er wörtlich: „Wir sind nur Freunde." Auf die Nachfrage, warum die Ziege dann seine Unterhose habe, sagte er nichts mehr. Sein Kumpel auf dem Beifahrersitz grinst seit Stunden.</p>
+
+    <blockquote>
+      <p>„Die Ziege gilt weiterhin als flüchtig. Die Unterhose gilt als Beweisstück. Der Rest geht uns ehrlich gesagt nichts an."</p>
+      <cite>Polizeisprecher, sichtlich fertig mit dem Tag</cite>
     </blockquote>
 
     <div class="infobox">
-      <h4>Chronologie</h4>
+      <h4>Chronologie einer Anbahnung</h4>
       <ul class="chronologie">
-        <li><span class="zeit">02:01</span><span>Erster Blickkontakt. Sie steht unter der Laterne. Er fühlt sich beobachtet. Zu Recht.</span></li>
-        <li><span class="zeit">02:03</span><span>Er: „Ey, was willst du?" Sie: nichts. Sie rennt einfach los.</span></li>
-        <li><span class="zeit">02:09</span><span>Zwischenfall am Zaun. Verlust: eine Hose, ein Stück Würde.</span></li>
-        <li><span class="zeit">02:14</span><span>Ziege bricht ab. Letzter Blick. Zeugen sagen: „Da war was zwischen den beiden."</span></li>
-        <li><span class="zeit">02:31</span><span>Er ist zurück in der Garage. Erzählt die Geschichte zum ersten Mal. Sie wird mit jedem Bier besser.</span></li>
+        <li><span class="zeit">02:01</span><span>Erster Blickkontakt unter der Laterne. Sie scharrt mit dem Huf. Er fühlt sich geschmeichelt. Erster Fehler.</span></li>
+        <li><span class="zeit">02:03</span><span>Er: „Ey, was willst du?" Die Ziege zeigt es ihm lieber.</span></li>
+        <li><span class="zeit">02:04</span><span>Verfolgungsjagd. Zeugen sind sich uneins, wer hier wen jagt.</span></li>
+        <li><span class="zeit">02:09</span><span>Gerangel am Zaun. Die Unterhose wechselt die Besitzerin. Er wehrt sich „eher symbolisch".</span></li>
+        <li><span class="zeit">02:14</span><span>Die Ziege verschwindet mit der Beute. Letzter Blick über die Schulter. Er winkt. WARUM WINKT ER?</span></li>
+        <li><span class="zeit">02:31</span><span>Rückkehr zur Garage, ohne Unterhose, mit Grinsen. Erzählt „nichts Besonderes". Glaubt ihm keiner.</span></li>
       </ul>
     </div>
 
+    <h3 class="zwischen">Das Beweisstück an der Lippe</h3>
+
+    <figure>
+      <img src="images/IMG_6.jpeg" alt="Nahaufnahme eines jungen Mannes mit halb geschlossenen Augen und kleiner versorgter Stelle an der Oberlippe" loading="lazy">
+      <figcaption>Beweisstück B: die Lippe am Morgen danach. Er sagt „Zaun". Der Zaun bestreitet das. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+
+    <p>Bleibt die Frage nach der kleinen Blessur an seiner Oberlippe, die am Morgen danach fachmännisch verpflastert war. Er sagt: „Der Zaun." Die Rechtsmedizin sagt: „Vereinbar mit einem Zaun. Vereinbar aber auch mit ziemlich allem anderen, was nachts um zwei so passiert." Die Ziege war für eine Stellungnahme erneut nicht zu erreichen. Sie lässt über Dritte ausrichten, sie äußere sich „grundsätzlich nicht zu Privatem".</p>
+
     <div class="fahndung">
       <h4>Fahndungsaufruf</h4>
-      <p><strong>Gesucht:</strong> Ziege, Hörner, markantes Gebiss, kein Respekt. Zuletzt gesehen an der Haltestelle „Gewerbepark Nord".</p>
+      <p><strong>Gesucht:</strong> Ziege, Hörner, markantes Gebiss, eindeutige Absichten. Zuletzt gesehen an der Haltestelle „Gewerbepark Nord", eine Unterhose im Maul.</p>
+      <p><strong>Warnhinweis:</strong> Nähern Sie sich dem Tier nicht mit offener Hose.</p>
       <p class="hotline">☎ 0800 / ZIEGE-00 (kostenlos, aber sinnlos)</p>
     </div>
 
@@ -602,171 +602,27 @@
     </div>
   </article>
 
-  <!-- Einzelartikel -->
-
-  <article id="panorama" class="einblenden">
-    <p class="kicker">Panorama</p>
-    <h2>Exklusiv: Mann überlebt Rückbank</h2>
-    <figure>
-      <img src="images/IMG_1.jpeg" alt="Dunkles, verwackeltes Selfie eines müden jungen Mannes auf der Rückbank eines Autos" loading="lazy">
-      <figcaption>Der Blick eines Mannes, der alles gegeben hat. Wofür, weiß keiner. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
-    </figure>
-    <div class="meta">
-      <span class="autor">Von K. Blinker</span>
-      <span>Lesezeit: 30 Sekunden</span>
-    </div>
-    <p>Die Heimfahrt. Acht Minuten. Er hat sie überstanden – aufrecht, wach, so halb. Ärzte nennen das ein Wunder. Er nennt es gar nichts, er sagt ja nichts mehr.</p>
-    <blockquote>
-      <p>„Er hat die ganze Fahrt einmal geseufzt. Wir haben das respektiert."</p>
-      <cite>Der Fahrer</cite>
-    </blockquote>
-    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
-  </article>
-
-  <article class="einblenden">
-    <p class="kicker">Wissenschaft</p>
-    <h2>Lachanfall erschüttert Garage – Nachbarn dachten an Erdbeben</h2>
-    <figure>
-      <img src="images/IMG_2.jpeg" alt="Junger Mann mit Brille lacht in einer Garage unter grünem Neonlicht, im Hintergrund feiernde Menschen" loading="lazy">
-      <figcaption>Das Epizentrum, Sekunden nach dem Witz. Das grüne Licht ist kein Filter, sondern Zustand. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
-    </figure>
-    <div class="meta">
-      <span class="autor">Von B. Richter-Skala</span>
-      <span>Lesezeit: 30 Sekunden</span>
-    </div>
-    <p>Gegen halb eins fiel ein Witz. Welcher, weiß keiner mehr. Sicher ist nur: Er war offenbar dreckig genug, dass die Neonröhre geflackert hat. Der Rest der Garage lachte mit. Was blieb, war dieses Foto – und ein Witz, den keiner wiederholen will, „weil da Frauen mitlesen könnten".</p>
-    <blockquote>
-      <p>„Ich hab den Witz gehört. Ich sag dazu nichts. Meine Mutter liest das hier."</p>
-      <cite>Augenzeuge, feige</cite>
-    </blockquote>
-    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
-  </article>
-
-  <article id="eskalation" class="einblenden">
-    <p class="kicker">Eskalation</p>
-    <h2>Das verwackeltste Foto des Jahres</h2>
-    <figure>
-      <img src="images/IMG_3.jpeg" alt="Extrem verwackeltes Foto eines jungen Mannes mit offenem Mund, im Hintergrund trinkt eine Person aus einer Flasche" loading="lazy">
-      <figcaption>Vorne: Bewegung. Hinten: ein Mann, der der Flasche blind vertraut. Beides Kunst. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
-    </figure>
-    <div class="meta">
-      <span class="autor">Von L. Objektiv</span>
-      <span>Lesezeit: 30 Sekunden</span>
-    </div>
-    <p>Kein Fokus, kein Plan, keine Erinnerung. Der Fotograf weiß nicht mehr, ob das beim Springen, Stolpern oder Fallen entstand. Vermutlich alles gleichzeitig. Die Jury vergab trotzdem den ersten Platz – „weil das Bild ehrlicher ist als jeder Montagmorgen".</p>
-    <blockquote>
-      <p>„So sieht 1:15 Uhr von innen aus."</p>
-      <cite>Die Jury</cite>
-    </blockquote>
-    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
-  </article>
-
-  <article class="einblenden">
-    <p class="kicker">Reportage</p>
-    <h2>Er war mittendrin – und blieb einfach</h2>
-    <figure>
-      <img src="images/IMG_4.jpeg" alt="Selfie eines lachenden jungen Mannes in einer Garage, im Hintergrund stehen mehrere Personen" loading="lazy">
-      <figcaption>Der Zeitzeuge, umgeben von weiteren Zeitzeugen. Alle bezeugen dasselbe: Es war laut. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
-    </figure>
-    <div class="meta">
-      <span class="autor">Von A. Torblatt</span>
-      <span>Lesezeit: 30 Sekunden</span>
-    </div>
-    <p>Sein komplettes Protokoll der Nacht: „Dann waren wir halt da. Dann war das halt so. Dann sind wir halt geblieben." Mehr muss man über diesen Abend nicht wissen. Mehr weiß auch keiner.</p>
-    <blockquote>
-      <p>„Er stand einfach da – und plötzlich war es eine Party."</p>
-      <cite>Ein Soziologe, der nicht dabei war</cite>
-    </blockquote>
-    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
-  </article>
-
-  <article class="einblenden">
-    <p class="kicker">Die Lage am Abend</p>
-    <h2>Vier Sekunden Ruhe – dann kam der nächste Song</h2>
-    <figure>
-      <img src="images/IMG_5.jpeg" alt="Junger Mann mit ruhigem Blick unter grün-rosa Partylicht, im Hintergrund bunte Scheinwerfer" loading="lazy">
-      <figcaption>Ein Mann, ein Blick, keine Ereignisse. Der stillste Moment des Abends. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
-    </figure>
-    <div class="meta">
-      <span class="autor">Von M. Pausen-Clausen</span>
-      <span>Lesezeit: 20 Sekunden</span>
-    </div>
-    <p>Für vier Sekunden war es ruhig. Was in ihm vorging? Experten tippen auf eine Mischung aus „Wo ist mein Getränk?", „Was war das für eine Ziege?" und dem großen, ehrlichen „Egal". Dann lief wieder ein Lied, das alle kannten. Die Ruhe war vorbei. Auch schön.</p>
-    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
-  </article>
-
-  <article class="einblenden">
-    <p class="kicker">Investigativ</p>
-    <h2>Die Lippe: Knutschfleck, Zaun oder Ziege?</h2>
-    <figure>
-      <img src="images/IMG_6.jpeg" alt="Nahaufnahme eines jungen Mannes mit halb geschlossenen Augen und kleiner Verletzung mit Pflasterstreifen an der Oberlippe" loading="lazy">
-      <figcaption>Beweisstück A: eine Oberlippe mit Vergangenheit. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
-    </figure>
-    <div class="meta">
-      <span class="autor">Vom Investigativ-Team</span>
-      <span>Lesezeit: 40 Sekunden</span>
-    </div>
-    <p>Als er ging, war die Lippe heil. Als er wiederkam, klebte da ein Pflaster. Dazwischen liegen 30 Minuten und eine Ziege. Er sagt: „Türrahmen." Der Türrahmen hat keine Spuren. Die dritte Theorie kursiert nur hinter vorgehaltener Hand – und sie beginnt mit „vielleicht war da ja noch jemand".</p>
-    <blockquote>
-      <p>„Sieht nach einem wilden Abend aus. Nach was genau, sage ich ohne Anwalt nicht."</p>
-      <cite>Rechtsmedizinerin</cite>
-    </blockquote>
-    <p>Er schweigt. Die Ziege schweigt. Die Lippe heilt. Der Fall bleibt offen.</p>
-    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
-  </article>
-
-  <article class="einblenden">
-    <p class="kicker">Justiz</p>
-    <h2>Der Kronzeuge grinst immer noch</h2>
-    <figure>
-      <img src="images/IMG_7.jpeg" alt="Junger Mann in weißem Shirt mit zufriedenem Grinsen im dunklen Auto" loading="lazy">
-      <figcaption>Er hat alles gesehen. Er sagt nichts. Er grinst. Seit Stunden. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
-    </figure>
-    <div class="meta">
-      <span class="autor">Von J. Protokoll</span>
-      <span>Lesezeit: 30 Sekunden</span>
-    </div>
-    <p>Er saß auf dem Beifahrersitz und hat alles gesehen: die Ziege, die Flucht, die offene Hose, den Zaun. Seine komplette Aussage bisher: „Digga." Dann grinst er wieder. Er grinst wie einer, der Details kennt, die niemand hören will – und genau deshalb will sie jeder hören.</p>
-    <blockquote>
-      <p>„Der weiß was. So grinst keiner ohne Grund."</p>
-      <cite>Ermittlerkreise (seine Kumpels)</cite>
-    </blockquote>
-    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
-  </article>
-
   <!-- Umfrage des Tages -->
   <section class="umfrage einblenden" aria-label="Umfrage des Tages">
     <h4>Umfrage des Tages</h4>
-    <p class="frage">Was wollte die Ziege wirklich?</p>
+    <p class="frage">Was lief da wirklich zwischen ihm und der Ziege?</p>
     <div class="balken-reihe">
-      <div class="antwort"><span>Sie fand ihn süß. Kann man verstehen.</span><span class="prozent">38&nbsp;%</span></div>
-      <div class="balken"><div class="fuellung" data-breite="38"></div></div>
+      <div class="antwort"><span>„Nur Freunde"? Ja, klar. Und ich bin der Papst.</span><span class="prozent">44&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="44"></div></div>
     </div>
     <div class="balken-reihe">
-      <div class="antwort"><span>Rache. Wofür, weiß nur die Ziege.</span><span class="prozent">29&nbsp;%</span></div>
-      <div class="balken"><div class="fuellung" data-breite="29"></div></div>
+      <div class="antwort"><span>Die Ziege hat klare Absichten gezeigt. Respekt.</span><span class="prozent">27&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="27"></div></div>
     </div>
     <div class="balken-reihe">
-      <div class="antwort"><span>Sie wollte auch nur auf die Party</span><span class="prozent">21&nbsp;%</span></div>
-      <div class="balken"><div class="fuellung" data-breite="21"></div></div>
+      <div class="antwort"><span>Er hat gewunken. Das sagt doch alles.</span><span class="prozent">19&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="19"></div></div>
     </div>
     <div class="balken-reihe">
-      <div class="antwort"><span>Es gibt keine Ziege. Es gab nie eine Ziege.</span><span class="prozent">12&nbsp;%</span></div>
-      <div class="balken"><div class="fuellung" data-breite="12"></div></div>
+      <div class="antwort"><span>Es gibt keine Ziege. Es gab nie eine Ziege.</span><span class="prozent">10&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="10"></div></div>
     </div>
     <p class="teilnehmer">4.812 Stimmen, davon 4.811 aus derselben Garage.</p>
-  </section>
-
-  <!-- Ähnliche Artikel -->
-  <section class="aehnlich einblenden" aria-label="Ähnliche Artikel">
-    <h3>Das könnte Sie ebenfalls erschüttern</h3>
-    <ul>
-      <li><span class="ressort-tag">Ziegen</span><a href="#">Ziege gesichtet: Bäcker verkauft vorsichtshalber aus</a></li>
-      <li><span class="ressort-tag">Panorama</span><a href="#">Garage unter Denkmalschutz gestellt – Kühlschrank bleibt in Familienbesitz</a></li>
-      <li><span class="ressort-tag">Eskalation</span><a href="#">Musikbox nach 6-Stunden-Schicht in stabilem Zustand</a></li>
-      <li><span class="ressort-tag">Sport</span><a href="#">Leichtathletikverband lädt jungen Mann „rein interessehalber" zum Probetraining</a></li>
-      <li><span class="ressort-tag">Liebe</span><a href="#">Kontaktanzeige: Ziege, ledig, sportlich, sucht … ihn schon wieder</a></li>
-    </ul>
   </section>
 
   <!-- Kommentare -->
@@ -775,63 +631,63 @@
 
     <div class="kommentar">
       <div class="kopf"><span class="name">BesorgteMutter_1968</span><span class="zeit-k">vor 2 Stunden</span></div>
-      <p class="text">Hat der Junge eine Jacke dabei? In so einer Garage zieht es doch.</p>
+      <p class="text">Und jetzt läuft der Junge ohne Unterhose rum? Bei dem Wetter? Da wird man ja krank.</p>
       <button class="likes" type="button">▲ 482 · Antworten</button>
     </div>
 
     <div class="kommentar">
       <div class="kopf"><span class="name">Ziegenfanclub_Nordwest e.V.</span><span class="zeit-k">vor 2 Stunden</span></div>
-      <p class="text">Die Kollegin hat sich völlig normal verhalten. Wenn ein Mann nachts mit offener Hose rumsteht, darf man ja wohl mal nachschauen. FREIHEIT FÜR DIE ZIEGE!</p>
+      <p class="text">Die Kollegin hat höflich Interesse bekundet, er hat gewunken. Für uns ist das eine einvernehmliche Sommerromanze. FREIHEIT FÜR DIE ZIEGE!</p>
       <button class="likes" type="button">▲ 356 · Antworten</button>
     </div>
 
     <div class="kommentar">
       <div class="kopf"><span class="name">Einsamer_Landwirt_49</span><span class="zeit-k">vor 1 Stunde</span></div>
-      <p class="text">Falls die Ziege das hier liest: Bei mir ist noch ein Platz im Stall frei. Nur seriöse Absichten.</p>
+      <p class="text">Erst rennt sie mir jahrelang hinterher und jetzt sowas. Man denkt immer, man kennt seine Ziege.</p>
       <button class="likes" type="button">▲ 891 · Antworten</button>
     </div>
 
     <div class="kommentar">
       <div class="kopf"><span class="name">Opa_Herbert_Original</span><span class="zeit-k">vor 58 Minuten</span></div>
-      <p class="text">Früher wurde man auch von Ziegen gejagt, aber da hat man kein Theater gemacht. Man ist einfach schneller gelaufen. Und die Hose hatte man zu.</p>
+      <p class="text">Zu meiner Zeit hat man der Ziege höchstens die Hand gegeben. Aber gewunken hat man nicht. Winken macht Hoffnungen.</p>
       <button class="likes" type="button">▲ 267 · Antworten</button>
     </div>
 
     <div class="kommentar">
       <div class="kopf"><span class="name">Die_Ziege_Selbst_Offiziell</span><span class="zeit-k">vor 44 Minuten</span></div>
-      <p class="text">Er weiß, was er getan hat. Mäh.</p>
+      <p class="text">Die Unterhose behalte ich. Er weiß, warum. Mäh.</p>
       <button class="likes" type="button">▲ 1.893 · Antworten</button>
     </div>
 
     <div class="kommentar">
       <div class="kopf"><span class="name">Garagennachbar_Klaus</span><span class="zeit-k">vor 12 Minuten</span></div>
-      <p class="text">Wer stellt meine Mülltonne wieder hin? Ansonsten: schöne Feier. Bis ca. 4 Uhr. Sehr schön sogar.</p>
-      <button class="likes" type="button">▲ 94 · Antworten</button>
+      <p class="text">Ich sage nur: Um 2:20 Uhr war es hinterm Zaun verdächtig still. Verdächtig. Still. Mehr sage ich nicht, ich muss hier noch wohnen.</p>
+      <button class="likes" type="button">▲ 940 · Antworten</button>
     </div>
   </section>
 
   <!-- Korrektur -->
   <div class="korrektur einblenden">
     <strong>In eigener Sache – Korrektur</strong>
-    In einer früheren Version hieß es, die Ziege sei gefasst worden. Das war falsch. Die Ziege ist frei. Freier als wir alle. Wir bedauern.
+    In einer früheren Version hieß es, die Ziege sei gefasst worden. Das war falsch. Die Ziege ist frei, die Unterhose ist weg, und beide wirken sehr zufrieden. Wir bedauern gar nichts.
   </div>
 
 </main>
 
 <footer>
   <div class="logo-f">Der Garagen<span class="rot">-</span>Kurier</div>
-  <p>Qualitätsjournalismus über eine Garage, einen Abend und ein Huftier.</p>
-  <p>Impressum · Datenschutz · Ziegenschutz · Karriere (wir suchen: alle)</p>
+  <p>Qualitätsjournalismus über einen Abend, einen Zaun und ein Huftier mit Absichten.</p>
+  <p>Impressum · Datenschutz · Ziegenschutz · Vermisstenstelle für Unterhosen</p>
   <p>© 2026 Garagen-Kurier Medien GmbH &amp; Co. Ziegen-KG. Alle Rechte vorbehalten, vor allem das Recht auf Übertreibung.</p>
-  <p>Alles stark übertrieben. Die Ziege ist echt. Zumindest emotional.</p>
+  <p>Alles stark übertrieben. Die Ziege ist echt. Die Gefühle vermutlich auch.</p>
 </footer>
 
 <!-- Paywall -->
 <div class="paywall-overlay" id="paywall" role="dialog" aria-modal="true" aria-labelledby="paywall-titel">
   <div class="paywall">
     <button class="schliessen" type="button" id="paywall-zu" aria-label="Paywall schließen">×</button>
-    <h4 id="paywall-titel">Ihr kostenloses Ziegen-Kontingent ist fast aufgebraucht.</h4>
-    <p>Unterstützen Sie unabhängigen Garagen-Journalismus. Unsere Reporter riskieren alles – vor allem ihren Ruf.</p>
+    <h4 id="paywall-titel">Sie wollen wissen, wie es mit den beiden weitergeht?</h4>
+    <p>Wir auch. Unterstützen Sie unabhängigen Garagen-Journalismus – unsere Reporter kampieren bereits am Zaun.</p>
     <div class="preis">0,00&nbsp;€</div>
     <p class="preis-sub">pro Monat · für immer · niemals kündbar, weil nie abgeschlossen</p>
     <button class="abo-knopf" type="button" id="paywall-abo">Kostenlos weiterlesen</button>
