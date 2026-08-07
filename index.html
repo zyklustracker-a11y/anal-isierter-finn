@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Garagen-Kurier – Unabhängig. Unbestechlich. Unscharf.</title>
+<meta name="description" content="Der Garagen-Kurier – Deutschlands führendes Nachrichtenportal für Ereignisse, die exakt eine Garage betreffen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rot: #d0021b;
+    --schwarz: #111111;
+    --grau: #555555;
+    --hellgrau: #e5e5e5;
+    --papier: #ffffff;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--schwarz);
+    background: var(--papier);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+
+  /* ---------- Breaking-News-Banner ---------- */
+  .breaking {
+    background: var(--rot);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.45rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .breaking .label {
+    background: #fff;
+    color: var(--rot);
+    font-weight: 700;
+    padding: 0.05rem 0.45rem;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    animation: blink 1.6s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.55; } }
+  .breaking .ticker {
+    display: inline-block;
+    animation: ticker 28s linear infinite;
+  }
+  @keyframes ticker {
+    from { transform: translateX(100vw); }
+    to   { transform: translateX(-100%); }
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--papier);
+    border-bottom: 3px solid var(--schwarz);
+  }
+  .masthead {
+    text-align: center;
+    padding: 1.1rem 1rem 0.7rem;
+    border-bottom: 1px solid var(--hellgrau);
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(1.7rem, 6vw, 3rem);
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+  .masthead h1 .rot { color: var(--rot); }
+  .masthead .claim {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--grau);
+    margin-top: 0.35rem;
+  }
+  nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav ul {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0;
+    list-style: none;
+    padding: 0 0.5rem;
+    min-width: max-content;
+    margin: 0 auto;
+  }
+  @media (min-width: 700px) { nav ul { justify-content: center; } }
+  nav a {
+    display: block;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--schwarz);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  nav a:hover { color: var(--rot); border-bottom-color: var(--rot); }
+  nav a.aktiv { color: var(--rot); border-bottom-color: var(--rot); }
+
+  /* ---------- Layout ---------- */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.1rem;
+  }
+  .datum-leiste {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.75rem;
+    color: var(--grau);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--hellgrau);
+  }
+
+  /* ---------- Artikel-Grundstil ---------- */
+  article { padding: 2.6rem 0; border-bottom: 1px solid var(--hellgrau); }
+  .kicker {
+    color: var(--rot);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.55rem;
+  }
+  article h2 {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    line-height: 1.12;
+    margin-bottom: 0.7rem;
+  }
+  article h3.unterzeile {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.05rem, 3vw, 1.25rem);
+    color: var(--grau);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    font-size: 0.75rem;
+    color: var(--grau);
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--hellgrau);
+    border-bottom: 1px solid var(--hellgrau);
+    margin-bottom: 1.3rem;
+  }
+  .meta .autor { font-weight: 600; color: var(--schwarz); }
+
+  figure { margin: 0 0 1.4rem; }
+  figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--hellgrau);
+  }
+  figcaption {
+    font-size: 0.75rem;
+    color: var(--grau);
+    padding-top: 0.45rem;
+    border-bottom: 1px solid var(--hellgrau);
+    padding-bottom: 0.6rem;
+  }
+  figcaption .credit { color: #999; white-space: nowrap; }
+  .bild-fehlt {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: repeating-linear-gradient(45deg, #f4f4f4, #f4f4f4 12px, #ececec 12px, #ececec 24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--grau);
+    font-size: 0.8rem;
+    padding: 1rem;
+  }
+
+  article p { margin-bottom: 1.1rem; }
+  article p.vorspann::first-letter {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 3.3em;
+    float: left;
+    line-height: 0.85;
+    padding-right: 0.09em;
+  }
+
+  blockquote {
+    border-left: 4px solid var(--rot);
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding: 0.3rem 0 0.3rem 1.1rem;
+  }
+  blockquote p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.45;
+    margin-bottom: 0.4rem;
+  }
+  blockquote cite {
+    font-style: normal;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--grau);
+  }
+
+  /* ---------- Infoboxen ---------- */
+  .infobox {
+    background: #fafafa;
+    border: 1px solid var(--hellgrau);
+    border-top: 4px solid var(--schwarz);
+    padding: 1.3rem 1.4rem;
+    margin: 1.8rem 0;
+    font-size: 0.92rem;
+  }
+  .infobox h4 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.9rem;
+  }
+  .chronologie { list-style: none; }
+  .chronologie li {
+    display: grid;
+    grid-template-columns: 4.2rem 1fr;
+    gap: 0.8rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px dotted var(--hellgrau);
+  }
+  .chronologie li:last-child { border-bottom: none; }
+  .chronologie .zeit { font-weight: 700; color: var(--rot); font-variant-numeric: tabular-nums; }
+
+  .fahndung {
+    border: 3px double var(--schwarz);
+    padding: 1.4rem;
+    margin: 1.8rem 0;
+    text-align: center;
+  }
+  .fahndung h4 {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--rot);
+    margin-bottom: 0.9rem;
+  }
+  .phantombild {
+    width: min(240px, 70%);
+    aspect-ratio: 3 / 4;
+    margin: 0 auto 0.9rem;
+    border: 1px solid var(--schwarz);
+    background: repeating-linear-gradient(0deg, #f0f0f0, #f0f0f0 6px, #e6e6e6 6px, #e6e6e6 12px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    color: var(--grau);
+  }
+  .phantombild .ziege { font-size: 4rem; filter: grayscale(1) contrast(1.3); }
+  .phantombild .hinweis-text { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .fahndung p { font-size: 0.88rem; margin-bottom: 0.4rem; }
+  .fahndung .hotline { font-weight: 700; font-size: 1rem; }
+
+  /* ---------- Share-Buttons ---------- */
+  .share {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .share button {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: none;
+    border: 1px solid var(--schwarz);
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .share button:hover { background: var(--schwarz); color: #fff; }
+
+  /* ---------- Umfrage ---------- */
+  .umfrage {
+    border: 1px solid var(--hellgrau);
+    border-top: 4px solid var(--rot);
+    padding: 1.4rem;
+    margin: 2.6rem 0;
+  }
+  .umfrage h4 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--rot);
+    margin-bottom: 0.5rem;
+  }
+  .umfrage .frage {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+  }
+  .balken-reihe { margin-bottom: 0.9rem; }
+  .balken-reihe .antwort {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    gap: 1rem;
+  }
+  .balken-reihe .prozent { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .balken {
+    height: 10px;
+    background: var(--hellgrau);
+    overflow: hidden;
+  }
+  .balken .fuellung {
+    height: 100%;
+    background: var(--schwarz);
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .balken-reihe:first-of-type .fuellung { background: var(--rot); }
+  .umfrage .teilnehmer {
+    font-size: 0.72rem;
+    color: var(--grau);
+    margin-top: 0.6rem;
+  }
+
+  /* ---------- Ähnliche Artikel ---------- */
+  .aehnlich { padding: 2.4rem 0; border-bottom: 1px solid var(--hellgrau); }
+  .aehnlich h3, .kommentare h3 {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 3px solid var(--schwarz);
+    margin-bottom: 1.2rem;
+  }
+  .aehnlich ul { list-style: none; }
+  .aehnlich li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--hellgrau);
+  }
+  .aehnlich li:last-child { border-bottom: none; }
+  .aehnlich a {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--schwarz);
+    text-decoration: none;
+    line-height: 1.3;
+  }
+  .aehnlich a:hover { color: var(--rot); }
+  .aehnlich .ressort-tag {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--rot);
+    margin-bottom: 0.15rem;
+  }
+
+  /* ---------- Kommentare ---------- */
+  .kommentare { padding: 2.4rem 0; }
+  .kommentar {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--hellgrau);
+  }
+  .kommentar .kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+    flex-wrap: wrap;
+  }
+  .kommentar .name { font-weight: 700; font-size: 0.9rem; }
+  .kommentar .zeit-k { font-size: 0.72rem; color: var(--grau); }
+  .kommentar .text { font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .kommentar .likes {
+    font-size: 0.75rem;
+    color: var(--grau);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .kommentar .likes:hover { color: var(--rot); }
+
+  /* ---------- Korrektur ---------- */
+  .korrektur {
+    margin: 2.4rem 0;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--hellgrau);
+    background: #fafafa;
+    font-size: 0.85rem;
+    color: var(--grau);
+  }
+  .korrektur strong {
+    color: var(--schwarz);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--schwarz);
+    color: #bbb;
+    text-align: center;
+    padding: 2.2rem 1.2rem;
+    font-size: 0.78rem;
+    margin-top: 1rem;
+  }
+  footer .logo-f {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+  footer .logo-f .rot { color: var(--rot); }
+  footer p { margin-bottom: 0.35rem; }
+
+  /* ---------- Paywall ---------- */
+  .paywall-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 200;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem;
+  }
+  @media (min-width: 600px) { .paywall-overlay { align-items: center; } }
+  .paywall-overlay.sichtbar { display: flex; }
+  .paywall {
+    background: #fff;
+    max-width: 460px;
+    width: 100%;
+    padding: 2.2rem 1.8rem 1.8rem;
+    position: relative;
+    text-align: center;
+    border-top: 6px solid var(--rot);
+    animation: hochfahren 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes hochfahren {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .paywall h4 {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 1.6rem;
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+  }
+  .paywall p { font-size: 0.9rem; color: var(--grau); margin-bottom: 1.2rem; }
+  .paywall .preis {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 2.6rem;
+    color: var(--rot);
+    line-height: 1;
+  }
+  .paywall .preis-sub { font-size: 0.75rem; color: var(--grau); margin-bottom: 1.4rem; }
+  .paywall .abo-knopf {
+    font-family: var(--sans);
+    background: var(--rot);
+    color: #fff;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.85rem 1.8rem;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.15s;
+  }
+  .paywall .abo-knopf:hover { opacity: 0.88; }
+  .paywall .schliessen {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.8rem;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--grau);
+  }
+  .paywall .kleingedruckt {
+    font-size: 0.65rem;
+    color: #aaa;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  /* ---------- Scroll-Animation ---------- */
+  .einblenden {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .einblenden.sichtbar {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .einblenden { opacity: 1; transform: none; transition: none; }
+    .breaking .ticker { animation: none; }
+    .breaking .label { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. Breaking-News-Banner -->
+<div class="breaking" role="status">
+  <span class="label">+++ Eilmeldung +++</span>
+  <span class="ticker">Ziege weiterhin flüchtig ++ Innenministerium beruft Krisenstab „Capra" ein ++ Garage vorerst gesichert ++ Anwohner werden gebeten, Mülltonnen ins Haus zu holen ++ DFB prüft Vorfall aus ungeklärten Gründen ebenfalls ++</span>
+</div>
+
+<header>
+  <div class="masthead">
+    <h1>Der Garagen<span class="rot">-</span>Kurier</h1>
+    <p class="claim">Unabhängig · Unbestechlich · Unscharf</p>
+  </div>
+  <nav aria-label="Ressorts">
+    <ul>
+      <li><a href="#" class="aktiv">Startseite</a></li>
+      <li><a href="#ziegen-affaere">Ziegen</a></li>
+      <li><a href="#panorama">Panorama</a></li>
+      <li><a href="#eskalation">Eskalation</a></li>
+      <li><a href="#">Rückbank</a></li>
+      <li><a href="#">Wirtschaft (leer)</a></li>
+      <li><a href="#kommentare">Leserbriefe</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="datum-leiste">
+  <span>Donnerstag, 7. August 2026</span>
+  <span>Ausgabe Nr. 1 · Preis: unbezahlbar</span>
+</div>
+
+<main>
+
+  <!-- 2. TOP-STORY: Die Ziegen-Affäre -->
+  <article id="ziegen-affaere" class="einblenden">
+    <p class="kicker">Exklusiv · Die Ziegen-Affäre · Teil 1–4 einer Recherche</p>
+    <h2>2:00 Uhr, Industriegebiet: Die Nacht, in der eine Ziege die Machtfrage stellte</h2>
+    <h3 class="unterzeile">Er wollte nur nach Hause. Sie wollte offenbar mehr. Rekonstruktion einer Verfolgungsjagd, die alles verändert hat – zumindest für einen einzelnen jungen Mann und ein mittelgroßes Gewerbegebiet.</h3>
+    <div class="meta">
+      <span class="autor">Von H.-J. Bock, Chefreporter Huftier-Ressort</span>
+      <span>7. August 2026, 04:12 Uhr</span>
+      <span>Lesezeit: 14 Minuten (gefühlt: 3 Tage)</span>
+      <span>1.204 Kommentare</span>
+    </div>
+
+    <p class="vorspann">Es ist die Geschichte einer Nacht, die niemand wollte und die doch jeder kennt. Gegen 2:00 Uhr verlässt ein junger Mann – Name der Redaktion bekannt, Frisur der Öffentlichkeit bekannt – eine Garagenfeierlichkeit im Industriegebiet. Er ist müde, zufrieden, arglos. Was er nicht ahnt: In den Schatten zwischen Reifenhandel und Getränkegroßmarkt wartet sie bereits. Die Ziege.</p>
+
+    <p>Was dann geschieht, rekonstruiert diese Redaktion aus über 40 Sprachnachrichten, drei sich widersprechenden Erinnerungen und einem verwackelten Video, auf dem ausschließlich ein Bordstein zu sehen ist. Fest steht: Das Tier nahm ohne erkennbaren Anlass die Verfolgung auf. Zeugen beschreiben ein „zielstrebiges, fast dienstliches Traben". Der junge Mann habe zunächst versucht, die Lage diplomatisch zu lösen („Ey, was willst du?"), sei dann aber zügig zu einer bewährten Strategie übergegangen: Rennen.</p>
+
+    <blockquote>
+      <p>„Ich habe in dreißig Jahren Industriegebiet viel gesehen. Aber noch nie einen Menschen, der so schnell an einer Waschanlage vorbeigelaufen ist. Die Ziege war trotzdem schneller."</p>
+      <cite>Ein Nachtwächter, der anonym bleiben möchte, weil er eigentlich geschlafen hat</cite>
+    </blockquote>
+
+    <p>Die Flucht führte nach übereinstimmenden Angaben über den Parkplatz eines Sanitärgroßhandels, durch eine Hecke, die sich später als Zaun herausstellte, und einmal komplett um eine Lagerhalle herum – wobei Ziege und Verfolgter sich zwischenzeitlich entgegenkamen, was beide Seiten sichtlich irritierte. Erst in Höhe der Bushaltestelle „Gewerbepark Nord" brach das Tier die Verfolgung ab. Warum, ist Gegenstand laufender Ermittlungen. Experten vermuten: Desinteresse.</p>
+
+    <p>Die Polizei bestätigte den Vorfall auf Anfrage in bemerkenswerter Ausführlichkeit. „Die Ziege gilt weiterhin als flüchtig", erklärte ein Sprecher. „Wir raten der Bevölkerung, sich normal zu verhalten. Sollte das Tier auftauchen, gilt: keine hektischen Bewegungen, kein Blickkontakt, keine Diskussionen. Ziegen gewinnen jede Diskussion."</p>
+
+    <blockquote>
+      <p>„Aus verhaltensbiologischer Sicht ist das Muster eindeutig: Die Ziege hat nicht angegriffen. Die Ziege hat eskortiert. Dass der junge Mann das als Verfolgung empfand, sagt mehr über ihn als über die Ziege."</p>
+      <cite>Prof. Dr. Mecker-Lindwurm, Institut für angewandte Ziegenverhaltensforschung, auf Anfrage um 3 Uhr nachts erstaunlich gesprächig</cite>
+    </blockquote>
+
+    <div class="infobox">
+      <h4>Chronologie einer Eskalation</h4>
+      <ul class="chronologie">
+        <li><span class="zeit">01:52</span><span>Der junge Mann verabschiedet sich „nur ganz kurz". Historiker werden diesen Moment später als Anfang vom Ende bezeichnen.</span></li>
+        <li><span class="zeit">02:01</span><span>Erster Sichtkontakt. Die Ziege steht unter einer Laterne, „wie bestellt und nicht abgeholt" (Zeugenaussage).</span></li>
+        <li><span class="zeit">02:03</span><span>Diplomatische Phase („Ey, was willst du?"). Scheitert nach vier Sekunden.</span></li>
+        <li><span class="zeit">02:04</span><span>Beginn der Verfolgungsjagd. Streckenrekord auf dem Abschnitt Waschanlage–Sanitärgroßhandel (unbestätigt).</span></li>
+        <li><span class="zeit">02:09</span><span>Zwischenfall an der Hecke, die ein Zaun war. Materialschaden: eine Hose, emotional.</span></li>
+        <li><span class="zeit">02:14</span><span>Die Ziege bricht die Verfolgung an der Haltestelle „Gewerbepark Nord" ab und blickt noch einmal zurück. Zeugen sprechen von „Verachtung".</span></li>
+        <li><span class="zeit">02:31</span><span>Der junge Mann erreicht die Garage. Erste Umarmungen, erste Übertreibungen.</span></li>
+        <li><span class="zeit">04:12</span><span>Diese Redaktion beschließt, alles andere abzusagen. Das hier ist jetzt unser Leben.</span></li>
+      </ul>
+    </div>
+
+    <p>Bleibt die Frage nach dem Motiv. Wollte die Ziege etwas mitteilen? War es eine Verwechslung? Oder, wie ein Kommentator im Netz mutmaßt, „einfach eine Ziege, die Ziegen-Sachen macht"? Die Wahrheit liegt, wie so oft, irgendwo im Industriegebiet. Diese Redaktion bleibt dran. Wir haben ja sonst nichts.</p>
+
+    <div class="fahndung">
+      <h4>Fahndungsaufruf</h4>
+      <div class="phantombild" role="img" aria-label="Phantombild der gesuchten Ziege">
+        <span class="ziege">🐐</span>
+        <span class="hinweis-text">Phantombild<br>(Ähnlichkeit: erschreckend)</span>
+      </div>
+      <p><strong>Gesucht:</strong> Ziege, ca. 60–80 cm Schulterhöhe, Fellfarbe „irgendwie ziegenfarben", letzter bekannter Aufenthaltsort: Bushaltestelle „Gewerbepark Nord". Besondere Kennzeichen: strafender Blick, hohes Lauftempo, kein Respekt.</p>
+      <p>Hinweise nimmt jede Dienststelle entgegen, die noch abnimmt:</p>
+      <p class="hotline">☎ 0800 / ZIEGE-00 (kostenlos, aber sinnlos)</p>
+    </div>
+
+    <div class="share" aria-label="Teilen">
+      <button type="button">Teilen</button>
+      <button type="button">Twittern (o. ä.)</button>
+      <button type="button">Per Fax</button>
+      <button type="button">Merken</button>
+    </div>
+  </article>
+
+  <!-- 3. Einzelartikel -->
+
+  <article id="panorama" class="einblenden">
+    <p class="kicker">Panorama · Medizin</p>
+    <h2>Exklusiv: Mann übersteht Rückbank – Ärzte sprechen von Wunder</h2>
+    <h3 class="unterzeile">Zwischen Kopfstütze und Gurtschloss: Wie ein junger Mann eine Autofahrt überlebte, die laut Augenzeugen „höchstens acht Minuten" dauerte.</h3>
+    <div class="meta">
+      <span class="autor">Von Dr. med. K. Blinker, Ressort Fahrzeuginnenraum</span>
+      <span>7. August 2026, 02:58 Uhr</span>
+      <span>Lesezeit: 4 Minuten</span>
+    </div>
+    <figure>
+      <img src="images/IMG_1.jpeg" alt="Dunkles, verwackeltes Selfie eines müden jungen Mannes auf der Rückbank eines Autos" loading="lazy">
+      <figcaption>Der Blick eines Mannes, der alles gegeben hat, ohne dass irgendjemand sagen könnte, wofür. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+    <p class="vorspann">Die Rückbank. Für viele nur ein Sitzmöbel, für ihn an diesem Abend: Schicksal. Aufnahmen, die dieser Redaktion exklusiv vorliegen, zeigen einen jungen Mann in einem Zustand, den Mediziner als „wach, aber nur formal" beschreiben. Der Blick geht nach unten, vermutlich Richtung Handy, möglicherweise Richtung innerer Leere. Beides gilt als altersgerecht.</p>
+    <p>Wie es zu der Fahrt kam, ist unklar. Klar ist nur: Er hat sie überstanden. „Der Körper eines jungen Mannes um zwei Uhr nachts ist zu erstaunlichen Dingen fähig", erklärt ein Notfallmediziner, den wir einfach so lange angerufen haben, bis er etwas Zitierfähiges sagte. „Aufrecht sitzen ist in diesem Zustand bereits eine Leistung, die man würdigen muss."</p>
+    <blockquote>
+      <p>„Er hat die ganze Fahrt nichts gesagt. Irgendwann hat er einmal geseufzt. Wir haben das respektiert."</p>
+      <cite>Der Fahrer, laut eigener Aussage „der einzige Erwachsene im Auto"</cite>
+    </blockquote>
+    <p>Die Familie bittet in dieser schweren Zeit um Privatsphäre, hat aber vorsorglich schon einmal alle Bilder in die Familiengruppe geschickt.</p>
+    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
+  </article>
+
+  <article class="einblenden">
+    <p class="kicker">Wissenschaft · Erdbeben</p>
+    <h2>Seismographen schlagen aus: Lachanfall erschüttert Garage – Behörden zunächst ratlos</h2>
+    <h3 class="unterzeile">Messstationen in drei Bundesländern registrierten die Erschütterung. Die Ursache: ein einzelner junger Mann, dem offenbar etwas sehr Lustiges gesagt wurde. Was, will niemand mehr wissen.</h3>
+    <div class="meta">
+      <span class="autor">Von B. Richter-Skala, Ressort Geowissenschaften</span>
+      <span>7. August 2026, 00:47 Uhr</span>
+      <span>Lesezeit: 3 Minuten</span>
+    </div>
+    <figure>
+      <img src="images/IMG_2.jpeg" alt="Junger Mann mit Brille lacht in einer Garage unter grünem Neonlicht, im Hintergrund feiernde Menschen" loading="lazy">
+      <figcaption>Das Epizentrum, Sekunden nach dem Ereignis. Das grüne Licht ist kein Filter, sondern Zustand. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+    <p class="vorspann">Es begann als gewöhnlicher Abend unter Neonröhren. Dann, gegen 0:40 Uhr, das Beben. Der Geologische Dienst bestätigte auf Anfrage „eine signifikante Erschütterung mit Ursprung in einem Garagenkomplex", Stärke: „lustig bis sehr lustig" auf der nach oben offenen Richterskala des Humors.</p>
+    <p>Was genau den Lachanfall auslöste, konnte bis Redaktionsschluss nicht rekonstruiert werden. Drei Anwesende geben an, es sei „ein Witz über irgendwas" gewesen. Ein vierter besteht darauf, es sei gar kein Witz gewesen, sondern „einfach die Situation". Die Staatsanwaltschaft prüft, ob die Situation angemessen gewürdigt wurde.</p>
+    <blockquote>
+      <p>„Er hat so gelacht, dass die Neonröhre geflackert hat. Oder die hat vorher schon geflackert. Auf jeden Fall hat sie geflackert."</p>
+      <cite>Augenzeuge, hält sich selbst für die verlässlichste Quelle des Abends</cite>
+    </blockquote>
+    <blockquote>
+      <p>„Wir bitten die Bevölkerung, weiterhin lustig zu bleiben, aber verantwortungsvoll."</p>
+      <cite>Sprecher des Geologischen Dienstes, sichtlich müde</cite>
+    </blockquote>
+    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
+  </article>
+
+  <article id="eskalation" class="einblenden">
+    <p class="kicker">Eskalation · Fotokunst</p>
+    <h2>Unter Lebensgefahr entstanden: Das verwackeltste Foto des Jahres – Jury „zutiefst bewegt"</h2>
+    <h3 class="unterzeile">Kein Stativ. Kein Fokus. Kein Plan. Warum dieses Bild trotzdem – oder gerade deshalb – in die Geschichte der Garagenfotografie eingehen wird.</h3>
+    <div class="meta">
+      <span class="autor">Von L. Objektiv, Feuilleton</span>
+      <span>7. August 2026, 01:15 Uhr</span>
+      <span>Lesezeit: 5 Minuten</span>
+    </div>
+    <figure>
+      <img src="images/IMG_3.jpeg" alt="Extrem verwackeltes Foto eines jungen Mannes mit offenem Mund, im Hintergrund trinkt eine Person aus einer Flasche" loading="lazy">
+      <figcaption>Im Vordergrund: Bewegung. Im Hintergrund: ein Mann, der der Flasche vertraut. Beides Kunst. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+    <p class="vorspann">Die Jury des „Goldenen Wackelkontakts", des wichtigsten Preises für unfreiwillige Fotografie, fand deutliche Worte: „Dieses Bild verweigert sich jeder Schärfe – und genau darin liegt seine Wahrheit." Der Fotograf selbst kann sich an die Aufnahme nach eigener Aussage „eher so mittel" erinnern, was Kritiker als höchste Form künstlerischer Hingabe werten.</p>
+    <p>Kunsthistorisch ordnet sich das Werk in die Tradition des Garagen-Expressionismus ein: der offene Mund als Urschrei der Jugend, die Unschärfe als Kommentar zur Unübersichtlichkeit der Gegenwart, der trinkende Mann im Hintergrund als stiller Chronist. „Man weiß nicht, ob das Foto beim Springen, Stolpern oder Fallen entstand", so die Jury. „Vermutlich bei allem gleichzeitig."</p>
+    <blockquote>
+      <p>„Ich habe geweint, als ich es sah. Allerdings vor Lachen, das muss man dazusagen."</p>
+      <cite>Jurymitglied, wollte eigentlich nur ein Wasser holen</cite>
+    </blockquote>
+    <p>Das Original hängt ab sofort dort, wo alle bedeutenden Werke dieser Epoche hängen: in einer WhatsApp-Gruppe mit 14 Teilnehmern, von denen drei „Haha" reagiert haben.</p>
+    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
+  </article>
+
+  <article class="einblenden">
+    <p class="kicker">Reportage · Innenansichten</p>
+    <h2>Er war mittendrin: Der Mann, der die Garage von innen sah – ein Protokoll</h2>
+    <h3 class="unterzeile">Andere reden über die Garage. Er war da. Das Protokoll einer Nacht zwischen Werkbank, Musikbox und der Erkenntnis, dass es Stühle nie für alle gibt.</h3>
+    <div class="meta">
+      <span class="autor">Von A. Torblatt, Chefreporterin Innenräume</span>
+      <span>7. August 2026, 01:38 Uhr</span>
+      <span>Lesezeit: 6 Minuten</span>
+    </div>
+    <figure>
+      <img src="images/IMG_4.jpeg" alt="Selfie eines lachenden jungen Mannes in einer Garage, im Hintergrund stehen mehrere Personen" loading="lazy">
+      <figcaption>Der Zeitzeuge, umgeben von weiteren Zeitzeugen, die alle dasselbe bezeugen: Es war laut. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+    <p class="vorspann">Wo genau verläuft die Grenze zwischen Dabeisein und Mittendrinsein? Dieses Dokument beantwortet die Frage ein für alle Mal. Man beachte die Körperhaltung: vorgebeugt, präsent, bereit. Man beachte den Hintergrund: Menschen, die es nie auf eine Titelseite geschafft hätten – bis heute.</p>
+    <p>Sein Protokoll der Nacht, das dieser Redaktion in Auszügen vorliegt, umfasst Sätze von historischer Wucht: „Dann waren wir halt da." – „Dann war das halt so." – „Dann sind wir halt geblieben." Historiker vergleichen die Quellenlage bereits mit mittelalterlichen Klosterchroniken, „nur ehrlicher".</p>
+    <blockquote>
+      <p>„Er stand einfach da, mitten im Geschehen, und hat das Geschehen dadurch erst zum Geschehen gemacht. Vorher war es nur eine Garage mit Leuten drin."</p>
+      <cite>Soziologe, war nicht dabei, hat aber trotzdem eine Meinung</cite>
+    </blockquote>
+    <p>Auf die Frage, was er künftigen Generationen mitgeben wolle, antwortete der Zeitzeuge nach langem Nachdenken: „Komm einfach vorbei." Mehr, so Experten, muss man über diese Nacht nicht wissen. Mehr weiß auch keiner.</p>
+    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
+  </article>
+
+  <article class="einblenden">
+    <p class="kicker">Panorama · Die Lage am Abend</p>
+    <h2>Nach Stunden der Eskalation: Ein Moment der Stille – Nation hält den Atem an</h2>
+    <h3 class="unterzeile">Zwischen grünem und rosa Licht geschah das Unfassbare: nichts. Ein Land verneigt sich vor der ruhigsten Sekunde des Abends.</h3>
+    <div class="meta">
+      <span class="autor">Von M. Pausen-Clausen, Ressort Besinnung</span>
+      <span>7. August 2026, 03:20 Uhr</span>
+      <span>Lesezeit: 2 Minuten (bitte langsam lesen)</span>
+    </div>
+    <figure>
+      <img src="images/IMG_5.jpeg" alt="Junger Mann mit ruhigem Blick unter grün-rosa Partylicht, im Hintergrund bunte Scheinwerfer" loading="lazy">
+      <figcaption>Ein Mann, ein Blick, keine Ereignisse. Beobachter sprechen vom „stillsten Bild seit Erfindung der Garage". <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+    <p class="vorspann">Es gibt Momente, in denen die Geschichte den Atem anhält. Dieser hier dauerte Zeugenaussagen zufolge etwa vier Sekunden – dann lief wieder ein Lied, „das alle kannten". Doch diese vier Sekunden, festgehalten in Grün und Rosa, gehören jetzt der Ewigkeit.</p>
+    <p>Was in ihm vorging, weiß niemand. Analysten vermuten eine Mischung aus „Wo ist mein Getränk?", „Was war das für eine Ziege vorhin?" und dem großen, alterslosen „Egal". Das Bundesinstitut für Stimmungslagen stufte den Moment als „national bedeutsam" ein und empfahl, ihn nicht zu zerreden. Wir tun es trotzdem. Es ist unser Beruf.</p>
+    <blockquote>
+      <p>„Für einen Moment war es fast andächtig. Dann hat jemand die Anlage lauter gemacht, und die Andacht war vorbei. Auch schön."</p>
+      <cite>Augenzeugin, stand direkt daneben und „wollte eigentlich gar nichts sagen"</cite>
+    </blockquote>
+    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
+  </article>
+
+  <article class="einblenden">
+    <p class="kicker">Investigativ · Die Lippen-Frage</p>
+    <h2>Kriegsreporter der Garagenfront: Woher stammt die mysteriöse Verletzung an der Lippe? Eine Spurensuche</h2>
+    <h3 class="unterzeile">Ein Kratzer, ein Pflaster, tausend Fragen. Unsere Rechercheredaktion hat Hinweise verfolgt, Zeugen befragt und am Ende vor allem eines gefunden: weitere Fragen.</h3>
+    <div class="meta">
+      <span class="autor">Von S. Pflaster & T. Wunde, Investigativteam</span>
+      <span>7. August 2026, 05:02 Uhr</span>
+      <span>Lesezeit: 8 Minuten</span>
+    </div>
+    <figure>
+      <img src="images/IMG_6.jpeg" alt="Nahaufnahme eines jungen Mannes mit halb geschlossenen Augen und kleiner Verletzung mit Pflasterstreifen an der Oberlippe" loading="lazy">
+      <figcaption>Das Beweisstück A der Nation: eine Oberlippe mit Vergangenheit. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+    <p class="vorspann">Er schweigt. Die Lippe nicht. Was diese Nahaufnahme zeigt, beschäftigt inzwischen Stammtische, Familiengruppen und mindestens einen besorgten Hausarzt: eine kleine, fachmännisch versorgte Verletzung an der Oberlippe. Herkunft: offiziell ungeklärt. Inoffiziell: erst recht ungeklärt.</p>
+    <p>Die Theorien reichen von „Türrahmen" über „Flaschenöffner-Zwischenfall" bis zu „das war schon immer da". Doch eine Spur wiegt schwerer als alle anderen. Ermittlerkreise bestätigten dieser Redaktion, man schließe „einen Zusammenhang mit dem flüchtigen Tier ausdrücklich nicht aus". Zur Erinnerung: Die Ziege ist weiterhin nicht gefasst. Die zeitliche Nähe der Ereignisse ist, so ein Sprecher, „auffällig, aber kein Beweis". Die Lippe war für eine Stellungnahme nicht zu erreichen.</p>
+    <blockquote>
+      <p>„Ich sage nur so viel: Als er zurückkam, hatte er das Pflaster. Als er ging, hatte er es nicht. Dazwischen liegt die Ziege. Rechnen Sie selbst."</p>
+      <cite>Zeuge aus dem engeren Garagenumfeld, spricht nur gegen Chips</cite>
+    </blockquote>
+    <blockquote>
+      <p>„Verletzungsmuster dieser Art sind mit einem Ziegenkontakt vereinbar. Aber auch mit ungefähr allem anderen, was man nachts um zwei so macht."</p>
+      <cite>Rechtsmedizinerin, bereut den Rückruf</cite>
+    </blockquote>
+    <p>Diese Redaktion bleibt an der Lippe dran. Journalistisch, versteht sich.</p>
+    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
+  </article>
+
+  <article class="einblenden">
+    <p class="kicker">Justiz · Der Zeugenstand</p>
+    <h2>Der Kronzeuge: Dieser Mann hat alles gesehen – und grinst immer noch</h2>
+    <h3 class="unterzeile">Er saß in der ersten Reihe der Geschichte, genauer: auf dem Beifahrersitz. Was er weiß, könnte alles verändern. Was er sagt: nichts. Was er tut: grinsen.</h3>
+    <div class="meta">
+      <span class="autor">Von J. Protokoll, Gerichtsreporterin</span>
+      <span>7. August 2026, 03:44 Uhr</span>
+      <span>Lesezeit: 4 Minuten</span>
+    </div>
+    <figure>
+      <img src="images/IMG_7.jpeg" alt="Junger Mann in weißem Shirt mit zufriedenem Grinsen im dunklen Auto" loading="lazy">
+      <figcaption>Der Kronzeuge in der Nacht der Nächte. Sein Grinsen gilt als das am besten dokumentierte Beweisstück des Verfahrens. <span class="credit">Foto: Reuters/Garagenkorrespondent</span></figcaption>
+    </figure>
+    <p class="vorspann">Jede große Affäre hat ihren Schlüsselzeugen. Die Ziegen-Affäre hat ihn auch – und er trägt weißes Shirt, sitzt im Dunkeln und grinst, als wüsste er etwas, das wir alle nicht wissen. Ermittler bestätigen: Genau das ist das Problem.</p>
+    <p>Mehrfach wurde er gebeten, seine Version der Ereignisse zu schildern. Seine bislang ausführlichste Aussage lautet wörtlich: „Digga." Juristen streiten seither, ob das als Aussage, Bewertung oder Verfassungskommentar zu werten ist. Einigkeit besteht nur in einem Punkt: Das Grinsen war schon vor der Ziege da – und es wird die Ziege überdauern.</p>
+    <blockquote>
+      <p>„Er hat vom Beifahrersitz aus alles gesehen: die Ziege, die Flucht, den Zaun, der eine Hecke sein wollte. Und was macht er? Er grinst. Seit Stunden. Wir machen uns langsam Sorgen. Schöne Zähne übrigens."</p>
+      <cite>Ermittlungsnahe Kreise, also seine Kumpels</cite>
+    </blockquote>
+    <p>Sein Anwalt – ein Freund, der einmal eine Folge einer Anwaltsserie gesehen hat – ließ ausrichten, sein Mandant werde sich „zu gegebener Zeit" äußern. Auf Nachfrage, wann das sei, grinste auch der Anwalt.</p>
+    <div class="share"><button type="button">Teilen</button><button type="button">Merken</button></div>
+  </article>
+
+  <!-- 8. Umfrage des Tages -->
+  <section class="umfrage einblenden" aria-label="Umfrage des Tages">
+    <h4>Umfrage des Tages</h4>
+    <p class="frage">Was wollte die Ziege wirklich?</p>
+    <div class="balken-reihe">
+      <div class="antwort"><span>Rache – wofür, weiß nur die Ziege</span><span class="prozent">41&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="41"></div></div>
+    </div>
+    <div class="balken-reihe">
+      <div class="antwort"><span>Sie wollte auch nur auf die Party</span><span class="prozent">27&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="27"></div></div>
+    </div>
+    <div class="balken-reihe">
+      <div class="antwort"><span>Verwechslung – sie hielt ihn für eine andere Ziege</span><span class="prozent">19&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="19"></div></div>
+    </div>
+    <div class="balken-reihe">
+      <div class="antwort"><span>Es gibt keine Ziege. Es gab nie eine Ziege.</span><span class="prozent">13&nbsp;%</span></div>
+      <div class="balken"><div class="fuellung" data-breite="13"></div></div>
+    </div>
+    <p class="teilnehmer">Basis: 4.812 Stimmen, davon 4.811 aus derselben Garage. Repräsentativ für genau diese Garage.</p>
+  </section>
+
+  <!-- 6. Ähnliche Artikel -->
+  <section class="aehnlich einblenden" aria-label="Ähnliche Artikel">
+    <h3>Das könnte Sie ebenfalls erschüttern</h3>
+    <ul>
+      <li><span class="ressort-tag">Ziegen</span><a href="#">Ziege gesichtet: Anwohner in Sorge, Bäcker verkauft vorsichtshalber aus</a></li>
+      <li><span class="ressort-tag">Panorama</span><a href="#">Garage nach Vorfall unter Denkmalschutz gestellt – Kühlschrank bleibt in Familienbesitz</a></li>
+      <li><span class="ressort-tag">Eskalation</span><a href="#">Musikbox nach 6-Stunden-Schicht in kritischem, aber stabilem Zustand</a></li>
+      <li><span class="ressort-tag">Politik</span><a href="#">Gemeinderat uneins: Braucht das Industriegebiet einen Ziegenbeauftragten?</a></li>
+      <li><span class="ressort-tag">Wirtschaft</span><a href="#">Pfandbeauftragter der Feier legt Zahlen vor: „Wir sprechen von einem mittleren Vermögen"</a></li>
+      <li><span class="ressort-tag">Sport</span><a href="#">Nach Verfolgungsjagd: Leichtathletikverband lädt jungen Mann „rein interessehalber" zum Sichtungstraining</a></li>
+    </ul>
+  </section>
+
+  <!-- 5. Kommentare -->
+  <section id="kommentare" class="kommentare einblenden" aria-label="Leserkommentare">
+    <h3>Leserstimmen <span style="font-family: var(--sans); font-size: 0.8rem; font-weight: 400; color: var(--grau);">(1.204 Kommentare, davon 6 lesbar)</span></h3>
+
+    <div class="kommentar">
+      <div class="kopf"><span class="name">BesorgteMutter_1968</span><span class="zeit-k">vor 2 Stunden</span></div>
+      <p class="text">Ich kenne diesen Jungen nicht, aber ich habe trotzdem Angst um ihn. Hat er eine Jacke dabei? In so einer Garage zieht es doch. Und die Ziege soll bitte auch eine Jacke anziehen.</p>
+      <button class="likes" type="button">▲ 482 · Antworten</button>
+    </div>
+
+    <div class="kommentar">
+      <div class="kopf"><span class="name">Ziegenfanclub_Nordwest e.V.</span><span class="zeit-k">vor 2 Stunden</span></div>
+      <p class="text">Wir distanzieren uns in aller Deutlichkeit von der Berichterstattung. Die Ziege hat sich zu jedem Zeitpunkt ziegentypisch verhalten. FREIHEIT FÜR DIE KOLLEGIN! Beitrittsformulare wie immer am Vereinsheim.</p>
+      <button class="likes" type="button">▲ 356 · Antworten</button>
+    </div>
+
+    <div class="kommentar">
+      <div class="kopf"><span class="name">R. Klabusterberg (Gemeinderat, parteilos)</span><span class="zeit-k">vor 1 Stunde</span></div>
+      <p class="text">Ich fordere seit 2019 eine Beleuchtungsoffensive im Industriegebiet und sehe mich durch die Ereignisse voll bestätigt. Mit ausreichend LED wäre die Ziege gar nicht erst in Stimmung gekommen. Näheres in meiner Sprechstunde.</p>
+      <button class="likes" type="button">▲ 12 · Antworten</button>
+    </div>
+
+    <div class="kommentar">
+      <div class="kopf"><span class="name">Opa_Herbert_Original</span><span class="zeit-k">vor 58 Minuten</span></div>
+      <p class="text">Früher wurde man auch von Ziegen gejagt, aber da hat man noch nicht so ein Theater gemacht. Man ist einfach schneller gelaufen. Trotzdem schönes Foto von dem Jungen, sieht aus wie meiner, nur unschärfer.</p>
+      <button class="likes" type="button">▲ 267 · Antworten</button>
+    </div>
+
+    <div class="kommentar">
+      <div class="kopf"><span class="name">Die_Ziege_Selbst_Offiziell</span><span class="zeit-k">vor 44 Minuten</span></div>
+      <p class="text">Ich werde mich zu den Vorwürfen zu gegebener Zeit äußern. Mäh.</p>
+      <button class="likes" type="button">▲ 1.893 · Antworten</button>
+    </div>
+
+    <div class="kommentar">
+      <div class="kopf"><span class="name">Garagennachbar_Klaus</span><span class="zeit-k">vor 12 Minuten</span></div>
+      <p class="text">Alles gut und schön, aber wer stellt eigentlich meine Mülltonne wieder hin? Die stand da nicht ohne Grund. Ansonsten Gratulation zur Feier, hörte sich gelungen an. Bis ca. 4 Uhr. Sehr gelungen.</p>
+      <button class="likes" type="button">▲ 94 · Antworten</button>
+    </div>
+  </section>
+
+  <!-- 9. Korrektur -->
+  <div class="korrektur einblenden">
+    <strong>In eigener Sache – Korrektur</strong>
+    In einer früheren Version dieses Artikels hieß es, die Ziege sei gefasst worden. Das war falsch. Die Ziege ist nicht gefasst. Die Ziege war nie gefasst. Nach Einschätzung der Redaktion ist die Ziege im Zweifel gefasster als wir alle. Wir bedauern.
+  </div>
+
+</main>
+
+<footer>
+  <div class="logo-f">Der Garagen<span class="rot">-</span>Kurier</div>
+  <p>Unabhängiger Qualitätsjournalismus über exakt eine Garage, einen Abend und ein Huftier.</p>
+  <p>Impressum · Datenschutz · Ziegenschutz · Karriere (wir suchen: alle)</p>
+  <p>© 2026 Garagen-Kurier Medien GmbH &amp; Co. Ziegen-KG. Alle Rechte vorbehalten, insbesondere das Recht auf Übertreibung.</p>
+  <p>Sämtliche Ereignisse sind stark übertrieben. Die Ziege ist echt. Zumindest emotional.</p>
+</footer>
+
+<!-- 7. Paywall -->
+<div class="paywall-overlay" id="paywall" role="dialog" aria-modal="true" aria-labelledby="paywall-titel">
+  <div class="paywall">
+    <button class="schliessen" type="button" id="paywall-zu" aria-label="Paywall schließen">×</button>
+    <h4 id="paywall-titel">Sie haben Ihr kostenloses Kontingent an Ziegen-Journalismus fast erreicht.</h4>
+    <p>Unterstützen Sie unabhängige Garagen-Berichterstattung. Unsere Reporter riskieren alles – vor allem ihren Ruf.</p>
+    <div class="preis">0,00&nbsp;€</div>
+    <p class="preis-sub">pro Monat · für immer · niemals kündbar, weil nie abgeschlossen</p>
+    <button class="abo-knopf" type="button" id="paywall-abo">Jetzt kostenlos weiterlesen</button>
+    <p class="kleingedruckt">Mit Klick auf den Button stimmen Sie exakt gar nichts zu. Es passiert nichts. Wie bei den meisten Abos, nur ehrlich.</p>
+  </div>
+</div>
+
+<script>
+  // Scroll-Einblendung
+  const beobachter = new IntersectionObserver((eintraege) => {
+    eintraege.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('sichtbar');
+        beobachter.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.einblenden').forEach((el) => beobachter.observe(el));
+
+  // Umfrage-Balken animieren, sobald sichtbar
+  const umfrage = document.querySelector('.umfrage');
+  if (umfrage) {
+    const balkenBeobachter = new IntersectionObserver((eintraege) => {
+      eintraege.forEach((e) => {
+        if (e.isIntersecting) {
+          umfrage.querySelectorAll('.fuellung').forEach((f) => {
+            f.style.width = f.dataset.breite + '%';
+          });
+          balkenBeobachter.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    balkenBeobachter.observe(umfrage);
+  }
+
+  // Paywall nach kurzem Scrollen, einmal pro Seitenaufruf
+  let paywallGezeigt = false;
+  const paywall = document.getElementById('paywall');
+  window.addEventListener('scroll', () => {
+    if (!paywallGezeigt && window.scrollY > 900) {
+      paywallGezeigt = true;
+      paywall.classList.add('sichtbar');
+      document.body.style.overflow = 'hidden';
+    }
+  }, { passive: true });
+  function paywallSchliessen() {
+    paywall.classList.remove('sichtbar');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('paywall-zu').addEventListener('click', paywallSchliessen);
+  document.getElementById('paywall-abo').addEventListener('click', paywallSchliessen);
+  paywall.addEventListener('click', (e) => { if (e.target === paywall) paywallSchliessen(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') paywallSchliessen(); });
+
+  // Fehlende Bilder durch Platzhalter ersetzen
+  document.querySelectorAll('figure img').forEach((img) => {
+    img.addEventListener('error', () => {
+      const platzhalter = document.createElement('div');
+      platzhalter.className = 'bild-fehlt';
+      platzhalter.textContent = 'Beweisfoto beschlagnahmt – Abbildung folgt (' + img.getAttribute('src') + ')';
+      img.replaceWith(platzhalter);
+    });
+  });
+</script>
+
+</body>
+</html>
